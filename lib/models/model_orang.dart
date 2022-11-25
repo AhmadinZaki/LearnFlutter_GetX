@@ -1,6 +1,10 @@
-class Orang {
-  var nama;
-  var umur;
+import 'package:get/get.dart';
 
-  Orang({this.nama, this.umur});
+class Orang {
+  var nama = "dana".obs;
+  var umur = 25.obs;
+  // var nama;
+  // var umur;
+
+  // Orang({this.nama, this.umur});
 }

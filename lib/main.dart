@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_flutter_getx/models/model_orang.dart';
+
+import './controllers/controller_orang.dart';
 
 void main() {
   runApp(
@@ -11,8 +12,8 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-//memanggil model
-  var orang = Orang(nama: "Zaki", umur: 25).obs;
+//memanggil controller
+  final orangController = Get.put(OrangController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +23,15 @@ class MyApp extends StatelessWidget {
         body: Center(
             child: Obx(
           () => Text(
-            //${orang.nama} panggil classs yang sudah diinisiasi
-            'nama saya ${orang.value.nama}',
+            //${orangController.orang.nama} panggil controller yang sudah diinisiasi
+            'nama saya ${orangController.orang.nama}',
             style: const TextStyle(fontSize: 35),
           ),
         )),
         //button untuk mengubah nama yang ada dalam class menjadi uppercase
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            orang.update((_) {
-              orang.value.nama = orang.value.nama.toString().toUpperCase();
-            });
+            orangController.changeUpperCase();
           },
         ),
       ),
